@@ -1,0 +1,54 @@
+<div style="margin-top: 60px;">
+
+    <div style="height: 90vh;" class="empty-wishlist mt-5 mb-5 d-flex justify-content-center align-items-center w-100 flex-column">
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/your-cart-is-empty-2161427-1815069.png" height="400px" alt="empty">
+        <h3 class="text-danger fw-bolder">Your Cart is empty</h3>
+        <button class="btn btn-success" style="overflow-y: hidden;" routerLink="">Add More Items</button>
+    </div>
+
+    <div class="container px-4 px-lg-5 mt-5">
+        <h5 style="overflow-y: hidden;">Cart Summary</h5>
+       <div class="row">
+            <div class="col-lg-8">
+                <table class="table shadow">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Product Name</th>
+                            <th>Image</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Mens casual shirts</td>
+                            <td><img src="https://i5.walmartimages.com/asr/01d72b07-f386-4fd4-93df-f35b936ddb4f.1bad60a1803edb3555c4b5a9268e0474.jpeg" width="100px" height="100px" alt=""></td>
+                            <td>
+                                <div class="d-flex">
+                                    <button class="btn fw-bolder">-</button>
+                                    <input type="number" value="1" style="max-width: 3rem;" readonly class="fomr-control text-center me-3">
+                                    <button class="btn fw-bolder">+</button>
+                                </div>
+
+                            </td>
+                            <td>$400</td>
+                            <td><i class="fa-solid fa-trash text-danger"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+                <div class="border rounded p-3">
+                    <h3 style="overflow-y: hidden;">Sub Total: <span>$340</span></h3>
+                    <hr>
+                    <div class="d-grid">
+                        <button class="btn btn-primary">Check out</button>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
