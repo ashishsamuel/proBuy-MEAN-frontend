@@ -1,17 +1,36 @@
 <div class="row" style="margin-top: 60px;">
     <div class="col-lg-7 p-0">
         <div class="ms-5 my-5">
-            <img src="https://cdn.wallpapersafari.com/89/94/KycE8k.png" style="height: 500px;" class="img-fluid" alt="login image wallpaper">
+            <img src="https://cdn.wallpapersafari.com/89/94/KycE8k.png" style="height: 500px;" class="img-fluid"
+                alt="login image wallpaper">
         </div>
     </div>
     <div class="col-lg-5 p-0">
-        <div class="bg-info text-dark me-5 my-5 d-flex flex-column align-items-center justify-content-center" style="height: 500px;">
+        <div class="bg-info text-dark me-5 my-5 d-flex flex-column align-items-center justify-content-center"
+            style="height: 500px;">
             <h5 class="fw-bold my-3" style="overflow-y: hidden;">Welcome User</h5>
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <input type="text" style="width: 300px;margin-bottom: 15px;" class="form-control" placeholder="Please enter emailid">
-                <input type="password" style="width: 300px;margin-bottom: 15px;" class="form-control" placeholder="Please enter password">
+            <form [formGroup]="loginForm" (ngSubmit)="login()"
+                class="d-flex flex-column justify-content-center align-items-center">
+                <div class="mb-1">
+                    <input type="text" style="width: 300px;margin-bottom: 15px;" class="form-control"
+                        placeholder="Please enter emailid" formControlName="email" name="email">
+                </div>
+                <!-- validation msg for email -->
+                <div class="mb-1"
+                    *ngIf="this.loginForm.get('email')?.errors&&this.loginForm.get('email')?.touched">
+                    *Invalid Email
+                </div>
+                <div class="mb-1">
+                    <input type="password" style="width: 300px;margin-bottom: 15px;" class="form-control"
+                        placeholder="Please enter password" formControlName="password" name="password"> 
+                </div> 
+                <!-- validation msg for password -->
+                <div class="mb-1"
+                    *ngIf="this.loginForm.get('password')?.errors&&this.loginForm.get('password')?.touched">
+                    *Invalid Password
+                </div>
                 <button class="btn btn-dark w-50 my-2">Login</button>
-            </div>
+            </form>
 
             <p>New User ? Click here to <a class="text-light" routerLink="/user/register">Register</a></p>
         </div>
