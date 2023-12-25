@@ -1,13 +1,14 @@
+<app-header></app-header>
 <div style="margin-top: 60px;">
 
-    <div style="height: 90vh;" class="empty-wishlist mt-5 mb-5 d-flex justify-content-center align-items-center w-100 flex-column">
+    <div *ngIf="cartItems.length===0" style="height: 90vh;" class="empty-wishlist mt-5 mb-5 d-flex justify-content-center align-items-center w-100 flex-column">
         <img src="https://cdni.iconscout.com/illustration/premium/thumb/your-cart-is-empty-2161427-1815069.png" height="400px" alt="empty">
         <h3 class="text-danger fw-bolder">Your Cart is empty</h3>
         <button class="btn btn-success" style="overflow-y: hidden;" routerLink="">Add More Items</button>
     </div>
 
-    <div class="container px-4 px-lg-5 mt-5">
-        <h5 style="overflow-y: hidden;">Cart Summary</h5>
+    <div *ngIf="cartItems.length>0" class="container px-4 px-lg-5 mt-5">
+        <h5 style="overflow-y: hidden;" class="mt-4">Cart Summary</h5>
        <div class="row">
             <div class="col-lg-8">
                 <table class="table shadow">
@@ -22,30 +23,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mens casual shirts</td>
-                            <td><img src="https://i5.walmartimages.com/asr/01d72b07-f386-4fd4-93df-f35b936ddb4f.1bad60a1803edb3555c4b5a9268e0474.jpeg" width="100px" height="100px" alt=""></td>
+                        <tr *ngFor="let product of cartItems;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{product.title.slice(0,20)}}...</td>
+                            <td><img [src]="product.image" width="100px" height="100px" alt=""></td>
                             <td>
                                 <div class="d-flex">
-                                    <button class="btn fw-bolder">-</button>
-                                    <input type="number" value="1" style="max-width: 3rem;" readonly class="fomr-control text-center me-3">
-                                    <button class="btn fw-bolder">+</button>
+                                    <button class="btn fw-bolder" (click)="decrementCart(product._id)">-</button>
+                                    <input type="number" [value]="product.quantity" style="max-width: 3rem;" readonly class="form-control text-center me-3">
+                                    <button class="btn fw-bolder" (click)="incrementCart(product._id)">+</button>
                                 </div>
 
                             </td>
-                            <td>$400</td>
-                            <td><i class="fa-solid fa-trash text-danger"></i></td>
+                            <td>{{product.grantTotal}}</td>
+                            <td><i class="fa-solid fa-trash text-danger" style="cursor: pointer;" (click)="removeItem(product._id)"></i></td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="mb-4">
+                    <button class="btn float-end btn-danger" (click)="emptyCart()">Empty Cart</button>
+                    <a routerLink="" class="float-end btn btn-success me-2">Add More Items</a>
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="border rounded p-3">
-                    <h3 style="overflow-y: hidden;">Sub Total: <span>$340</span></h3>
+                    <h3 style="overflow-y: hidden;">Sub Total: <span>{{cartTotalPrice}}</span></h3>
                     <hr>
                     <div class="d-grid">
-                        <button class="btn btn-primary">Check out</button>
+                        <a routerLink="/user/checkout"><button class="btn btn-primary">Check out</button></a>
                     </div>
                 </div>
             </div>

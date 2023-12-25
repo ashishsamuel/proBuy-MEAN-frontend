@@ -25,12 +25,16 @@ export class LoginComponent {
       const user = {email,password} 
       this.api.loginAPI(user).subscribe({
         next:(res:any)=>{
+          this.toaster.showSuccess(`${res.existingUser.username} loggined successfully !!!`)
+          sessionStorage.setItem("username",res.existingUser.username)
+          sessionStorage.setItem("token",res.token)
+          this.api.getWishlistCount()
+          this.api.getCartCount()
           this.loginForm.reset()
           this.router.navigateByUrl('')
         },
         error:(data:any)=>{
           this.toaster.showError(data.error)
-          this.loginForm.reset()
         }
       })
     }else{
