@@ -74,7 +74,7 @@ export class ApiService {
     return this.http.get(`${this.SERVER_URL}/cart/get-allproducts`,this.appendTokenHeader())
   }
 
-   // get wishlist count
+   // get cart count
    getCartCount(){
     this.getCartAPI().subscribe((res:any)=>{
       this.cartCount.next(res.length)
@@ -100,4 +100,8 @@ export class ApiService {
     emptyCartAPI(){
       return this.http.delete(`${this.SERVER_URL}/cart/empty`,this.appendTokenHeader())
     }
+
+    searchProductsAPI(searchKey:any){
+      return this.http.get(`${this.SERVER_URL}/products/filter?search=${searchKey}`,this.appendTokenHeader())
+  }
 }

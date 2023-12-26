@@ -8,8 +8,8 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active d-flex" aria-current="page" >
-                <input style="width: 500px;" class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search">
-                <button style="margin-left: -50px;" class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input style="width: 500px;" class="form-control me-2" #searchText type="search" placeholder="Search Product" aria-label="Search">
+                <button style="margin-left: -50px;" class="btn" (click)="searchProducts(searchText.value)"><i class="fa-solid fa-magnifying-glass"></i></button>
             </a>
           </li>
           <li class="nav-item active" routerLink="user/wishlist">

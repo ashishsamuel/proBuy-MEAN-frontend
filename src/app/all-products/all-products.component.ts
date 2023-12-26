@@ -49,6 +49,19 @@ export class AllProductsComponent implements OnInit{
       this.toaster.showWarning("operation denied... Please login")
     }
   }
+
+  getSearchText(event:any){
+    console.log(event);
+    this.api.searchProductsAPI(event).subscribe({
+      next:(res:any)=>{
+        
+        this.allProducts = res;        
+      },
+    error:(err:any)=>{
+      console.log(err);
+      
+    }
+  })
+  
 }
-
-
+}

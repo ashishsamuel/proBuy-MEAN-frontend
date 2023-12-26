@@ -36,6 +36,7 @@ export class CartComponent implements OnInit{
         total += product.grantTotal;
       });
       this.cartTotalPrice = Math.ceil(total)
+      sessionStorage.setItem("total",this.cartTotalPrice.toString())
     }
     else{
       this.cartTotalPrice = 0;

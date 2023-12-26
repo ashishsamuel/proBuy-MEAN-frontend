@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit{
   loginUsername:string ='';
   wishlistCount:number=0;
   cartCount:number =0
+  @Output() searchText = new EventEmitter()
+
 
   constructor(private router:Router,private api:ApiService){}
 
@@ -37,6 +39,12 @@ export class HeaderComponent implements OnInit{
     this.wishlistCount = 0
     this.cartCount = 0
     this.router.navigateByUrl("")
+    
+  }
+
+  searchProducts(searchText:any){
+    console.log(searchText);
+    this.searchText.emit(searchText)
     
   }
 }
